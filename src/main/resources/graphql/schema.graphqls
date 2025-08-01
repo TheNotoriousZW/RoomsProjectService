@@ -1,0 +1,88 @@
+type Project{
+    id: ID
+    name: String!
+    description: String!
+    date: String!
+    deadline: String!
+    principals: [String!]!
+    status: Status!
+    progress: Int
+    createdBy: String!
+    updatedAt: String
+    branches: [Branch!]
+}
+
+enum Status{
+    ACTIVE
+    PLANNING
+    COMPLETED
+    ON_HOLD
+    CANCELLED
+}
+
+type Branch{
+    id: ID
+    projectId: ID!
+    name: String!
+    description: String!
+    status: Status!
+    createdBy: String!
+    deadline: String!
+}
+
+input BranchInput{
+    id: ID
+    projectId: ID!
+    name: String!
+    description: String!
+    status: Status!
+    createdBy: String!
+    deadline: String! 
+}
+
+input updateBranchInput{
+    name: String!
+    description: String!
+    status: Status!
+    createdBy: String!
+    deadline: String!
+}
+
+input createProjectInput{
+    name: String!
+    description: String!
+    date: String!
+    deadline: String!
+    principals: [String!]!
+    status: Status!
+    createdBy: String!
+}
+
+input updateProjectInput{
+    name: String!
+    description: String!
+    date: String!
+    deadline: String!
+    principals: [String!]!
+    status: Status!
+    progress: Int
+    createdBy: String!
+    updatedAt: String!
+    branches: [BranchInput!]
+}
+
+type Query{
+    getAllProjects: [Project!]!
+    getProjectById(id: ID!): Project
+    getBranchById(id: ID!): Branch
+    getAllBranches: [Branch!]!
+}
+
+type Mutation{
+    createProject(project: createProjectInput!): Project
+    updateProject(id: ID!, project: updateProjectInput!): Project
+    deleteProject(id: ID!): Project
+    createBranch(branch: BranchInput!): Branch
+    updateBranch(id: ID!, branch: updateBranchInput!): Branch
+    deleteBranch(id: ID!): Branch
+}
