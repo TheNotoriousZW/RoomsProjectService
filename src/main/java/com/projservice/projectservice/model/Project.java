@@ -27,4 +27,8 @@ public class Project {
     private String createdBy;
     private String updatedAt;
     private List<Branch> branches;
+    private List<Issue> issues;
+    private Priority priority;
+    private List<String> resources;
+    private String teamId;
 }

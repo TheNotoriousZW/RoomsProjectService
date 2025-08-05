@@ -10,6 +10,35 @@ type Project{
     createdBy: String!
     updatedAt: String
     branches: [Branch!]
+    issues: [Issue!]
+    priority: Priority!
+    resources: [String!]
+    
+}
+
+enum Priority{
+    LOW
+    MEDIUM
+    HIGH
+}
+
+type Issue{
+    id: ID
+    projectId: ID!
+    branchId: ID
+    name: String!
+    description: String!
+    status: IssueStatus!
+    createdBy: String!
+    priority: Priority!
+    updatedAt: String
+}
+
+enum IssueStatus{
+    OPEN
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
 }
 
 enum Status{
